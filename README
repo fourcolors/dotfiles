@@ -1,0 +1,7 @@
+checkout http://thoughtbot.github.io/rcm/rcm.7.html for information on how to install my dotfiles
+
+## Included Files
+
+- spacemacs
+- fish config
+- gitignore
