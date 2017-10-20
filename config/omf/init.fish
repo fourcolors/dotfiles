@@ -1,0 +1,1 @@
+/Users/fourcolors/.dotfiles/config/omf/init.fish

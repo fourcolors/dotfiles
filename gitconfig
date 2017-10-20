@@ -1,0 +1,8 @@
+[user]
+	email = sterlingcobb@gmail.com
+	name = Sterling Cobb
+[alias]
+	co = checkout
+	st = status
+[core]
+	editor = nvim
