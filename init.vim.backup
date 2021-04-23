@@ -1,0 +1,190 @@
+set runtimepath+=~/.vim,~/.vim/after
+set packpath+=~/.vim
+source ~/.vimrc
+
+call plug#begin('~/.local/share/nvim/plugged')
+
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'scrooloose/nerdtree'
+Plug 'easymotion/vim-easymotion'
+Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-rails'
+Plug 'ap/vim-css-color'
+Plug 'leshill/vim-json'
+Plug 'tpope/vim-rails'
+Plug 'kchmck/vim-coffee-script'
+Plug 'tpope/vim-fugitive'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'djoshea/vim-autoread'
+Plug 'vim-scripts/Toggle-NERDTree-width'
+Plug 'scrooloose/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-scripts/hexHighlight.vim'
+Plug 'lifepillar/vim-wwdc16-theme'
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'alvan/vim-closetag'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'slim-template/vim-slim'
+Plug 'mxw/vim-jsx'
+Plug 'wakatime/vim-wakatime'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'crusoexia/vim-monokai'
+Plug 'leafgarland/typescript-vim'
+Plug 'Shougo/vimproc.vim', {'do': 'make -f make_mac.mak'}
+Plug 'ErichDonGubler/vim-sublime-monokai'
+Plug 'dag/vim-fish'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'qpkorr/vim-bufkill'
+Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
+Plug 'leafgarland/typescript-vim'
+Plug 'wavded/vim-stylus'
+
+"" Plug 'brooth/far.vim'
+
+call plug#end()
+
+"" ---------------------------------------------------------------------------
+"" Color Schemes and Layout
+"" ---------------------------------------------------------------------------
+""
+set background=dark
+syntax enable
+set termguicolors
+"" colorscheme monokai
+colorscheme monokai
+set noshowmode
+
+
+let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
+let g:sublimemonokai_term_italic = 1
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='deus'
+
+"" ---------------------------------------------------------------------------
+"" Smooth Scrolling Key Combos
+"" ---------------------------------------------------------------------------
+"" let g:comfortable_motion_scroll_down_key = "j"
+"" let g:comfortable_motion_scroll_up_key = "k"
+
+"" ---------------------------------------------------------------------------
+"" Text type
+"" ---------------------------------------------------------------------------
+""
+"" For .rabl type
+au BufRead,BufNewFile *.rabl setf ruby
+
+"" For Stylus"
+au BufRead,BufNewFile *.styl setf sass
+
+"" For Haml
+au! BufRead,BufNewFile *.haml setfiletype haml
+
+"" Highlighting for .ejs files
+au BufNewFile,BufRead *.ejs set filetype=html
+
+"" Highlighting for .handlebars files
+au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=handlebars
+
+"" For .env type files to sh
+au! BufRead,BufNewFile .env.* set ft=sh syntax=sh
+
+"" ----------------------------------------------------------------------------
+""  You Complete Me
+"" ----------------------------------------------------------------------------
+let g:ycm_register_as_syntastic_checker = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_filetype_blacklist={'unite': 1}
+let g:ycm_min_num_of_chars_for_completion = 1
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"" ----------------------------------------------------------------------------
+"" Tern Configurations
+""
+let g:tern_map_keys=1
+let g:tern_show_arguments_hints='on_move'
+let g:tern_show_arguments_pum=1
+
+"" ---------------------------------------------------------------------------
+"" KeyBindings
+"" ---------------------------------------------------------------------------
+let mapleader=" "
+set numberwidth=5
+set nowrap
+set number
+map <Leader>r :Buffers<CR>
+map <c-p> :F<CR>
+map <c-f> :GitFiles<CR>
+map <Leader><Tab> :bprevious<CR>
+
+"" ---------------------------------------------------------------------------
+"" NERDTree
+"" ---------------------------------------------------------------------------
+map <Leader>ns :NERDTreeToggle<CR>
+let g:NERDTreeWinPos = "right"
+let NERDTreeShowHidden = 1
+
+"" ---------------------------------------------------------------------------
+"" Easy Motion
+"" ---------------------------------------------------------------------------
+nmap t <Plug>(easymotion-t2)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+omap  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+nmap s <Plug>(easymotion-bd-w)
+
+"" ----------------------------------------------------------------------------
+""  Random other items
+"" ----------------------------------------------------------------------------
+"" Custom ignore for ctrl-p
+let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Storegit|hg|svn|optimized|compiled|node_modules)$'
+
+let g:used_javascript_libs = 'underscore,react,chai'
+
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+let vim_markdown_preview_github=1
+
+let g:closetag_filenames = "*.rb,*.html,*.xhtml,*.phtml,*.php,*.jsx,*.js"
+
+"" Press escape to turn off highlighted searching
+nnoremap <leader><esc> :noh<CR>
+
+" Don't require saving a buffer before switching buffers
+set hidden
+
+"" nerd commenter
+let g:NERDSpaceDelims = 1
+
+" manage tabs
+map <leader><tab> :BA<CR>
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set timeout timeoutlen=1000 ttimeoutlen=0
+" let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': '100split enew' }
+" let $FZF_DEFAULT_OPTS = { fzf --preview "pygmentize {}" --color light --margin 5,20 }
+
+" let $FZF_DEFAULT_COMMAND = 'git ls-tree -r --name-only HEAD 2> /dev/null'
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+  \ -g "*"
+  \ -g "!{.git,node_modules,vendor}/*" '
+  "
+" let g:rg_command = 'git ls-tree -r --name-only HEAD | rg --column'
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
